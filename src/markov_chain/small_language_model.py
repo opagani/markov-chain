@@ -1,11 +1,13 @@
 import collections
 import random
 
+from dataclasses import dataclass, field
 
+
+@dataclass
 class SmallLanguageModel:
-    def __init__(self) -> None:
-        self.markov_chain: dict[str, dict[str, float]] = {}
-        self.start_characters: list[str] = []
+    markov_chain: dict[str, dict[str, float]] = field(default_factory=dict)
+    start_characters: list[str] = field(default_factory=list)
 
     def train(self, text: str) -> None:
         """Train the language model on the given text data."""
@@ -56,8 +58,8 @@ class SmallLanguageModel:
 if __name__ == "__main__":
     # Sample text for training
     sample_text = """
-    The quick brown fox jumps over the lazy dog. 
-    Sphinx of black quartz, judge my vow. 
+    The quick brown fox jumps over the lazy dog.
+    Sphinx of black quartz, judge my vow.
     Pack my box with five dozen liquor jugs.
     How vexingly quick daft zebras jump!
     The five boxing wizards jump quickly.
